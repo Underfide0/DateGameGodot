@@ -1,0 +1,278 @@
+[gd_scene load_steps=37 format=3 uid="uid://dtdi6vaf7ayad"]
+
+[ext_resource type="Script" path="res://Scripts/Player.gd" id="1_6ud8x"]
+[ext_resource type="Script" path="res://Scripts/spin.gd" id="1_clmpx"]
+[ext_resource type="Material" uid="uid://bhmb0mnntm4kq" path="res://Materials/green.tres" id="1_qljd8"]
+[ext_resource type="Texture2D" uid="uid://2n2qp665xtxb" path="res://Sprites/Player/Prota_Idle_head.png" id="3_3gl6k"]
+[ext_resource type="Texture2D" uid="uid://b0ql5v1q6clnl" path="res://Sprites/Player/Prota_walk.png" id="5_ku3pa"]
+[ext_resource type="Texture2D" uid="uid://dv4uvl57hcchi" path="res://Sprites/DialogueSprites/dialogue_backgroung.png" id="6_jaxcp"]
+[ext_resource type="Script" path="res://Scripts/DIalogue/Dialogue.gd" id="6_xu8hi"]
+[ext_resource type="FontFile" uid="uid://c4jxt550fjwoq" path="res://Resources/Fonts/Roboto-Regular.ttf" id="7_wd1b2"]
+[ext_resource type="FontFile" uid="uid://df12pm6wu34wq" path="res://Resources/Fonts/Roboto-Bold.ttf" id="8_j2umd"]
+[ext_resource type="FontFile" uid="uid://cso7lc8xkl4ky" path="res://Resources/Fonts/Roboto-BlackItalic.ttf" id="9_dauca"]
+[ext_resource type="FontFile" uid="uid://bv0ltkc1r2krg" path="res://Resources/Fonts/Roboto-BoldItalic.ttf" id="10_2vrog"]
+[ext_resource type="AudioStream" uid="uid://dk5djwcepb3vi" path="res://Resources/Audio/DialogueAudio/Blop.wav" id="12_0ynok"]
+[ext_resource type="Script" path="res://Scripts/DIalogue/DialogueVoicePlayer.gd" id="13_oyvn8"]
+[ext_resource type="Script" path="res://Scripts/DIalogue/PauseCalculator.gd" id="14_mq6vw"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_2en6w"]
+sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+
+[sub_resource type="Sky" id="Sky_nwl0a"]
+sky_material = SubResource("ProceduralSkyMaterial_2en6w")
+
+[sub_resource type="Environment" id="Environment_27lqe"]
+background_mode = 2
+sky = SubResource("Sky_nwl0a")
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_4m5r4"]
+size = Vector3(10, 0.5, 10)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ljwbc"]
+size = Vector3(10, 0.5, 10)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_efcyu"]
+atlas = ExtResource("3_3gl6k")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l7sp3"]
+atlas = ExtResource("3_3gl6k")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gq2wo"]
+atlas = ExtResource("3_3gl6k")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qlwl8"]
+atlas = ExtResource("3_3gl6k")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uph7y"]
+atlas = ExtResource("3_3gl6k")
+region = Rect2(256, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m6vlx"]
+atlas = ExtResource("3_3gl6k")
+region = Rect2(320, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t2wdh"]
+atlas = ExtResource("3_3gl6k")
+region = Rect2(384, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_47qi1"]
+atlas = ExtResource("3_3gl6k")
+region = Rect2(448, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u0uyh"]
+atlas = ExtResource("5_ku3pa")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3mt6b"]
+atlas = ExtResource("5_ku3pa")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q0sn8"]
+atlas = ExtResource("5_ku3pa")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7ca8x"]
+atlas = ExtResource("5_ku3pa")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wd8b8"]
+atlas = ExtResource("5_ku3pa")
+region = Rect2(256, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cx82c"]
+atlas = ExtResource("5_ku3pa")
+region = Rect2(320, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rpsb0"]
+atlas = ExtResource("5_ku3pa")
+region = Rect2(384, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xlwmk"]
+atlas = ExtResource("5_ku3pa")
+region = Rect2(448, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_g6mxc"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_efcyu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l7sp3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gq2wo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qlwl8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uph7y")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m6vlx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t2wdh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_47qi1")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 12.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u0uyh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3mt6b")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q0sn8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7ca8x")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wd8b8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cx82c")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rpsb0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xlwmk")
+}],
+"loop": true,
+"name": &"Walk",
+"speed": 12.0
+}]
+
+[node name="Level1" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_27lqe")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="WorldEnvironment"]
+anchors_preset = -1
+anchor_left = 0.011
+anchor_top = 0.074
+anchor_right = 0.011
+anchor_bottom = 0.074
+offset_left = 168.328
+offset_top = -5.952
+offset_right = 924.328
+offset_bottom = 367.048
+bbcode_enabled = true
+text = "[b]Calvo[/b]
+
+[shake amp=50 freq=2] Temblor[/shake]
+
+[wave amp = 50 freq=2] Onda[/wave]
+
+[fade start =4  lenght=14] Fade[/fade]
+
+[tornado amp = 50 freq=2] Tornado[/tornado]
+
+[rainbow amp = 50 freq =2]Arcoiri[/rainbow]
+
+[hint={No le gustas}]Puede que no te guste pero[/hint]
+
+[outline_color=green]
+{text}
+[/outline_color]
+
+[color=#ff0000]Hi[/color] [wave]I was generated[/wave] for the [rainbow]dialogue[/rainbow] system test for the godot game [shake rate=20 level=10]engine[/shake]"
+scroll_following = true
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(-1, 2.18557e-08, -6.76574e-08, 2.18557e-08, 1, 2.38419e-07, 6.76574e-08, 2.38419e-07, -1, 0.179592, 1.13745, -2.17355)
+script = ExtResource("1_6ud8x")
+
+[node name="Escenario" type="Node3D" parent="."]
+
+[node name="Floor" type="StaticBody3D" parent="Escenario"]
+disable_mode = 1
+script = ExtResource("1_clmpx")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Escenario/Floor"]
+material_override = ExtResource("1_qljd8")
+mesh = SubResource("BoxMesh_4m5r4")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Escenario/Floor"]
+shape = SubResource("BoxShape3D_ljwbc")
+
+[node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+texture_filter = 0
+sprite_frames = SubResource("SpriteFrames_g6mxc")
+animation = &"Walk"
+frame = 2
+frame_progress = 0.8002
+
+[node name="DialogueNode" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("6_xu8hi")
+
+[node name="Background" type="NinePatchRect" parent="DialogueNode"]
+texture_filter = 1
+layout_mode = 0
+offset_left = 100.0
+offset_top = 434.0
+offset_right = 1090.0
+offset_bottom = 621.0
+texture = ExtResource("6_jaxcp")
+region_rect = Rect2(0, 0, 12, 12)
+patch_margin_left = 5
+patch_margin_top = 5
+patch_margin_right = 5
+patch_margin_bottom = 5
+
+[node name="Content" type="RichTextLabel" parent="DialogueNode"]
+layout_mode = 0
+offset_left = 116.0
+offset_top = 451.0
+offset_right = 1073.0
+offset_bottom = 606.0
+theme_override_colors/default_color = Color(0.47451, 0.360784, 0.290196, 1)
+theme_override_fonts/normal_font = ExtResource("7_wd1b2")
+theme_override_fonts/bold_font = ExtResource("8_j2umd")
+theme_override_fonts/italics_font = ExtResource("9_dauca")
+theme_override_fonts/bold_italics_font = ExtResource("10_2vrog")
+theme_override_font_sizes/normal_font_size = 32
+theme_override_font_sizes/bold_font_size = 32
+theme_override_font_sizes/italics_font_size = 32
+theme_override_font_sizes/bold_italics_font_size = 32
+theme_override_font_sizes/mono_font_size = 32
+bbcode_enabled = true
+
+[node name="TypeTyper" type="Timer" parent="DialogueNode"]
+wait_time = 0.04
+
+[node name="DialogueVoicePlayer" type="AudioStreamPlayer" parent="DialogueNode"]
+stream = ExtResource("12_0ynok")
+script = ExtResource("13_oyvn8")
+
+[node name="PauseCalculator" type="Node" parent="DialogueNode"]
+script = ExtResource("14_mq6vw")
+
+[node name="PauseTimer" type="Timer" parent="DialogueNode"]
+
+[connection signal="timeout" from="DialogueNode/TypeTyper" to="DialogueNode" method="_on_TypeTyper_timeout"]
+[connection signal="finished" from="DialogueNode/DialogueVoicePlayer" to="DialogueNode" method="_on_DialogueVoicePlayer_finished"]
+[connection signal="pause_requested" from="DialogueNode/PauseCalculator" to="DialogueNode" method="_on_PauseCalculator_pause_requested"]
+[connection signal="timeout" from="DialogueNode/PauseTimer" to="DialogueNode" method="_on_PauseTimer_timeout"]
