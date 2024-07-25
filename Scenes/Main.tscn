@@ -1,0 +1,44 @@
+[gd_scene load_steps=3 format=3 uid="uid://bncukacjy5hfq"]
+
+[ext_resource type="Script" path="res://Scripts/DIalogue/MainTest.gd" id="1_5cffl"]
+[ext_resource type="Script" path="res://Scripts/DIalogue/DialogueManager.gd" id="1_gwr3b"]
+
+[node name="Main" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_5cffl")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="FunnyButton" type="Button" parent="HBoxContainer"]
+layout_mode = 2
+
+[node name="SadButton" type="Button" parent="HBoxContainer"]
+layout_mode = 2
+
+[node name="WeirdButton" type="Button" parent="HBoxContainer"]
+layout_mode = 2
+
+[node name="DialoguePosition" type="Marker2D" parent="."]
+position = Vector2(553, 549)
+
+[node name="NextLabel" type="Label" parent="."]
+layout_mode = 0
+offset_left = 422.0
+offset_top = 612.0
+offset_right = 680.0
+offset_bottom = 635.0
+text = "PRESS ENTER FOR NEXT MESSAGE"
+
+[node name="DialogueManager" type="Node" parent="."]
+script = ExtResource("1_gwr3b")
+
+[connection signal="pressed" from="HBoxContainer/FunnyButton" to="." method="_on_FunnyButton_pressed"]
+[connection signal="pressed" from="HBoxContainer/SadButton" to="." method="_on_SadButton_pressed"]
+[connection signal="pressed" from="HBoxContainer/WeirdButton" to="." method="_on_WeirdButton_pressed"]
+[connection signal="finished" from="DialogueManager" to="." method="_on_DialogueManager_finished"]
+[connection signal="message_completed" from="DialogueManager" to="." method="_on_DialogueManager_message_completed"]
+[connection signal="message_requested" from="DialogueManager" to="." method="_on_DialogueManager_message_requested"]

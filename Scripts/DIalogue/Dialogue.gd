@@ -9,10 +9,8 @@ extends Control
 @onready var _calc: PauseCalculator = $PauseCalculator
 
 var _playing_voice: bool = false  
+signal message_completed
 
-func _ready() -> void:
-	await get_tree().create_timer(1.0).timeout
-	update_message("[wave]hello[/wave]{p=0.5} I am the text!")
 
 func _process(delta):
 	if content.visible_characters == 1:
@@ -32,6 +30,8 @@ func _on_TypeTyper_timeout() -> void:
 		content.visible_characters += 1
 	else:
 		type_timer.stop()
+		emit_signal("message_completed")  
+
 
 func _on_DialogueVoicePlayer_finished() -> void:
 	if _playing_voice:
@@ -48,3 +48,8 @@ func _on_PauseTimer_timeout() -> void:
 	_playing_voice = true
 	voice_player.play_with_random_pitch(0)
 	type_timer.start()
+	pause_timer.stop()  
+
+func message_is_fully_visible() -> bool:
+	return content.visible_characters >= content.text.length()
+

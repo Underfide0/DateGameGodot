@@ -1,0 +1,65 @@
+[gd_scene load_steps=10 format=3 uid="uid://dtdi6vaf7ayad"]
+
+[ext_resource type="Script" path="res://Scripts/DIalogue/Dialogue.gd" id="1_dcn8b"]
+[ext_resource type="Texture2D" uid="uid://dv4uvl57hcchi" path="res://Sprites/DialogueSprites/dialogue_backgroung.png" id="2_074dd"]
+[ext_resource type="FontFile" uid="uid://c4jxt550fjwoq" path="res://Resources/Fonts/Roboto-Regular.ttf" id="3_b8dpn"]
+[ext_resource type="FontFile" uid="uid://df12pm6wu34wq" path="res://Resources/Fonts/Roboto-Bold.ttf" id="4_4butc"]
+[ext_resource type="FontFile" uid="uid://cso7lc8xkl4ky" path="res://Resources/Fonts/Roboto-BlackItalic.ttf" id="5_b6u8p"]
+[ext_resource type="FontFile" uid="uid://bv0ltkc1r2krg" path="res://Resources/Fonts/Roboto-BoldItalic.ttf" id="6_g3ra3"]
+[ext_resource type="AudioStream" uid="uid://dk5djwcepb3vi" path="res://Resources/Audio/DialogueAudio/Blop.wav" id="7_n2gie"]
+[ext_resource type="Script" path="res://Scripts/DIalogue/DialogueVoicePlayer.gd" id="8_idl02"]
+[ext_resource type="Script" path="res://Scripts/DIalogue/PauseCalculator.gd" id="9_6ae0o"]
+
+[node name="Dialogue" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_dcn8b")
+
+[node name="Background" type="NinePatchRect" parent="."]
+texture_filter = 1
+layout_mode = 0
+offset_left = 100.0
+offset_top = 434.0
+offset_right = 1090.0
+offset_bottom = 621.0
+texture = ExtResource("2_074dd")
+region_rect = Rect2(0, 0, 12, 12)
+patch_margin_left = 5
+patch_margin_top = 5
+patch_margin_right = 5
+patch_margin_bottom = 5
+
+[node name="Content" type="RichTextLabel" parent="."]
+layout_mode = 0
+offset_left = 116.0
+offset_top = 451.0
+offset_right = 1073.0
+offset_bottom = 606.0
+theme_override_colors/default_color = Color(0.47451, 0.360784, 0.290196, 1)
+theme_override_fonts/normal_font = ExtResource("3_b8dpn")
+theme_override_fonts/bold_font = ExtResource("4_4butc")
+theme_override_fonts/italics_font = ExtResource("5_b6u8p")
+theme_override_fonts/bold_italics_font = ExtResource("6_g3ra3")
+theme_override_font_sizes/normal_font_size = 32
+theme_override_font_sizes/bold_font_size = 32
+theme_override_font_sizes/italics_font_size = 32
+theme_override_font_sizes/bold_italics_font_size = 32
+theme_override_font_sizes/mono_font_size = 32
+bbcode_enabled = true
+
+[node name="TypeTyper" type="Timer" parent="."]
+wait_time = 0.04
+
+[node name="DialogueVoicePlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_n2gie")
+script = ExtResource("8_idl02")
+
+[node name="PauseCalculator" type="Node" parent="."]
+script = ExtResource("9_6ae0o")
+
+[node name="PauseTimer" type="Timer" parent="."]
+
+[connection signal="timeout" from="TypeTyper" to="." method="_on_TypeTyper_timeout"]
+[connection signal="finished" from="DialogueVoicePlayer" to="." method="_on_DialogueVoicePlayer_finished"]
+[connection signal="pause_requested" from="PauseCalculator" to="." method="_on_PauseCalculator_pause_requested"]
+[connection signal="timeout" from="PauseTimer" to="." method="_on_PauseTimer_timeout"]
