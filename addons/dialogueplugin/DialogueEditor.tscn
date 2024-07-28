@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://dsdwswrn5bmj0"]
+[gd_scene load_steps=3 format=3 uid="uid://dsdwswrn5bmj0"]
 
-[ext_resource type="Texture2D" uid="uid://ccfw8af1a85d6" path="res://icon.svg" id="1_0po5h"]
+[ext_resource type="StyleBox" uid="uid://do1ur407evtr1" path="res://Styles/DialogueStyles/DialogueGraphUIStyle.tres" id="1_7m46q"]
+[ext_resource type="Script" path="res://addons/dialogueplugin/DialogueEditorUtilities.gd" id="1_gpr5q"]
 
 [node name="DialogueEditor" type="Control"]
 layout_mode = 3
@@ -9,65 +10,80 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_gpr5q")
+my_button_path = NodePath("Panel/SingleNode")
 
 [node name="GraphEdit" type="GraphEdit" parent="."]
 layout_mode = 1
 anchors_preset = -1
+anchor_top = 0.093
 anchor_right = 0.996
-anchor_bottom = 0.054
-offset_top = -1.0
-offset_right = 2.60791
-offset_bottom = 609.008
-scroll_offset = Vector2(-102.136, -208)
+anchor_bottom = 1.0
+offset_top = -0.264
+offset_right = 4.60803
+offset_bottom = 1.0
+scroll_offset = Vector2(-2.60791, -1.264)
 
-[node name="GraphNode" type="GraphNode" parent="GraphEdit"]
-layout_mode = 0
-offset_left = 224.0
-offset_top = 215.0
-offset_right = 438.0
-offset_bottom = 433.0
-mouse_filter = 1
-position_offset = Vector2(121.864, 7)
-resizable = true
-selected = true
-title = "SingleChoice"
-slot/0/left_enabled = false
-slot/0/left_type = 0
-slot/0/left_color = Color(1, 1, 1, 1)
-slot/0/left_icon = null
-slot/0/right_enabled = false
-slot/0/right_type = 0
-slot/0/right_color = Color(1, 1, 1, 1)
-slot/0/right_icon = null
-slot/0/draw_stylebox = true
-slot/1/left_enabled = false
-slot/1/left_type = 0
-slot/1/left_color = Color(1, 1, 1, 1)
-slot/1/left_icon = null
-slot/1/right_enabled = false
-slot/1/right_type = 0
-slot/1/right_color = Color(1, 1, 1, 1)
-slot/1/right_icon = null
-slot/1/draw_stylebox = true
-slot/2/left_enabled = false
-slot/2/left_type = 0
-slot/2/left_color = Color(1, 1, 1, 1)
-slot/2/left_icon = null
-slot/2/right_enabled = false
-slot/2/right_type = 0
-slot/2/right_color = Color(1, 1, 1, 1)
-slot/2/right_icon = null
-slot/2/draw_stylebox = true
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.266
+anchor_top = 0.014
+anchor_right = 0.982
+anchor_bottom = 0.016
+offset_left = 0.100037
+offset_top = 5.998
+offset_right = 0.268066
+offset_bottom = 38.561
+theme_override_styles/panel = ExtResource("1_7m46q")
 
-[node name="TextureRect" type="TextureRect" parent="GraphEdit/GraphNode"]
-layout_mode = 2
-texture = ExtResource("1_0po5h")
-stretch_mode = 4
+[node name="SingleNode" type="Button" parent="Panel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.006
+anchor_right = 0.129
+anchor_bottom = 0.945
+offset_left = 0.0589414
+offset_top = 1.0
+offset_right = -0.240128
+offset_bottom = 0.00892067
+text = "SingleNode"
 
-[node name="Label" type="Label" parent="GraphEdit/GraphNode"]
-layout_mode = 2
-text = "Name"
+[node name="MultipleChoiceNode" type="Button" parent="Panel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.14
+anchor_right = 0.34
+anchor_bottom = 0.945
+offset_left = 54.701
+offset_top = 1.0
+offset_right = 54.7009
+offset_bottom = 0.00892067
+text = "MultipleChoiceNode"
 
-[node name="TextEdit" type="TextEdit" parent="GraphEdit/GraphNode"]
-layout_mode = 2
-placeholder_text = "DialogueText"
+[node name="SaveButton" type="Button" parent="Panel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.35
+anchor_right = 0.43
+anchor_bottom = 0.945
+offset_left = 94.7509
+offset_top = 1.0
+offset_right = 94.8659
+offset_bottom = 0.00892067
+text = "Save"
+
+[node name="LoadButton" type="Button" parent="Panel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.441
+anchor_top = 0.03
+anchor_right = 0.533
+anchor_bottom = 0.945
+offset_left = 94.8069
+offset_top = -0.0155907
+offset_right = 95.0379
+offset_bottom = 0.00889015
+text = "Load"
+
+[connection signal="pressed" from="Panel/SingleNode" to="." method="_on_single_node_pressed"]

@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://bncukacjy5hfq"]
 
 [ext_resource type="Script" path="res://Scripts/DIalogue/MainTest.gd" id="1_5cffl"]
-[ext_resource type="Script" path="res://Scripts/DIalogue/DialogueManager.gd" id="1_gwr3b"]
+[ext_resource type="PackedScene" uid="uid://dlgdd7xmjboi0" path="res://Scenes/dialogue_manager.tscn" id="2_fhj2t"]
 
 [node name="Main" type="Control"]
 layout_mode = 3
@@ -33,8 +33,7 @@ offset_right = 680.0
 offset_bottom = 635.0
 text = "PRESS ENTER FOR NEXT MESSAGE"
 
-[node name="DialogueManager" type="Node" parent="."]
-script = ExtResource("1_gwr3b")
+[node name="DialogueManager" parent="." instance=ExtResource("2_fhj2t")]
 
 [connection signal="pressed" from="HBoxContainer/FunnyButton" to="." method="_on_FunnyButton_pressed"]
 [connection signal="pressed" from="HBoxContainer/SadButton" to="." method="_on_SadButton_pressed"]
